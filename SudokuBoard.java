@@ -17,7 +17,32 @@ public class SudokuBoard {
    }
    
    public String toString() {
-      return "";
+      StringBuilder output = new StringBuilder("┏━━━┯━━━┯━━━┳━━━┯━━━┯━━━┳━━━┯━━━┯━━━┓\n");
+      for(int r = 0; r < 9; r++) {
+         for (int c = 0; c < 9; c++) {
+            if(board[r][c] == '.') {
+               if(c == 0 || c == 3 || c == 6) {    // Thickens lines on edges and between blocks of 9
+                  output.append("┃   ");
+               } else {
+                  output.append("│   ");
+               }
+            } else {
+               if(c == 0 || c == 3 || c == 6) {    // Thickens lines on edges and between blocks of 9
+                  output.append("┃ " + board[r][c] + " ");
+               } else {
+                  output.append("│ " + board[r][c] + " ");
+               }
+            }
+         }
+         if(r == 2 || r == 5) {                    // Thickens lines between blocks of 9
+            output.append("┃\n┣━━━┿━━━┿━━━╋━━━┿━━━┿━━━╋━━━┿━━━┿━━━┫\n");
+         } else if (r == 8) {                      // Thickens bottom edge line
+            output.append("┃\n┗━━━┷━━━┷━━━┻━━━┷━━━┷━━━┻━━━┷━━━┷━━━┛\n");
+         } else {
+            output.append("┃\n┠───┼───┼───╂───┼───┼───╂───┼───┼───┨\n");
+         }
+      }
+   return output.toString();
    }
 
 }
