@@ -8,9 +8,9 @@ public class SudokuBoard {
       board = new char[9][9];
       String input = "";
       Scanner file = new Scanner(new File(fileName));
-      for(int r = 0; r < 9; r++) {
+      for(int r = 0; r < board.length; r++) {
          input = file.nextLine();
-         for(int c = 0; c < 9; c++) {
+         for(int c = 0; c < board[r].length; c++) {
             board[r][c] = input.charAt(c);
          }
       }
@@ -18,8 +18,8 @@ public class SudokuBoard {
    
    public String toString() {
       StringBuilder output = new StringBuilder("┏━━━┯━━━┯━━━┳━━━┯━━━┯━━━┳━━━┯━━━┯━━━┓\n");
-      for(int r = 0; r < 9; r++) {
-         for (int c = 0; c < 9; c++) {
+      for(int r = 0; r < board.length; r++) {
+         for (int c = 0; c < board[r].length; c++) {
             if(board[r][c] == '.') {
                if(c == 0 || c == 3 || c == 6) {    // Thickens lines on edges and between blocks of 9
                   output.append("┃   ");
